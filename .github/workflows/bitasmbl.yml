@@ -28,7 +28,7 @@ jobs:
           else
             echo "No changes to commit"
           fi
-      - name: Extract metadata from bitasmbl.json
+      - name: Extract metadata from temp.json
         id: meta
         run: |
           PROJECT_APPLICATION_LINKED_REPO_ID=$(jq -r '.projectApplicationLinkedRepoId' temp.json)
@@ -88,7 +88,7 @@ jobs:
           -w "\n%{http_code}" \
           -X POST https://bd22-176-221-143-53.ngrok-free.app/users/check-token-validity \
           -H "Content-Type: application/json" \
-          -H "Authorization: Bearer ${ secrets.BITASMBL_TOKEN }")
+          -H "Authorization: Bearer ${{ secrets.BITASMBL_TOKEN }}")
 
           BODY=$(echo "$RESPONSE" | sed '$d')
           STATUS=$(echo "$RESPONSE" | tail -n1)
