@@ -32,11 +32,11 @@ jobs:
       - name: Extract metadata from temp.json
         id: meta
         run: |
-          PROJECT_APPLICATION_LINKED_REPO_ID=$(jq -r '.projectApplicationLinkedRepoId' temp.json)
+          PROJECT_APPLICATION_LINKED_REPO_ID=$(jq -r '.Id' temp.json)
           PROJECT_APPLICATION_ID=$(jq -r '.projectApplicationId' temp.json)
 
-          echo "project_application_linked_repo_id=$PROJECT_APPLICATION_ID" >> $GITHUB_OUTPUT
-          echo "project_application_id=$REQUIREMENT_ID" >> $GITHUB_OUTPUT
+          echo "project_application_linked_repo_id=$PROJECT_APPLICATION_LINKED_REPO_ID" >> $GITHUB_OUTPUT
+          echo "project_application_id=$PROJECT_APPLICATION_ID" >> $GITHUB_OUTPUT
           
       - name: Send repo set up completion notification
         run: |
